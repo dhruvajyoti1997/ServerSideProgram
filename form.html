@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+     <h1> Register</h1>
+     <form id= "reg-form">
+        <div class="form-group">
+            <label for="username">UserName</label>
+            <input type="text" class="form-control" id="username" name="username">
+        </div>
+        <div class="form-group">
+            <label for="email">Email Id</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <button type="submit" value="Submit Form" class="btn btn-primary">Submit Once Done</button>
+     </form>
+     <script>
+         const form= document.getElementById('reg-form')
+         //1. send data as JSON form
+         form.addEventListener('submit',async function registerUser(event)
+         {
+            event.preventDefault();
+             const username = document.getElementById('username').value
+            const email = document.getElementById('email').value
+            const password = document.getElementById('password').value
+
+         const resultFormServer = await fetch('api/register',{
+             method:'POST',
+             headers:{
+                 'Content-Type':'application/json'
+            },
+            body: JSON.stringify({
+                username,
+                email,
+                password
+            })
+         }).then((res) => res.json())
+         })
+     </script>
+    </div>
+</body>
+</html>

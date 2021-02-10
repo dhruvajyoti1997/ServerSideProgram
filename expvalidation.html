@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form validation Using ReGex</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <h1 class="text-center bg-yellow text-white">Form validation Using ReGex in JS</h1>
+    <div class="container">
+        <br>
+        <!--<form onsubmit="return validation()"></form> -->
+        <form onsubmit="return validation()">
+            <div class="form-group">
+                <label> UserName:</label>
+                <input type="text" name="" id="username" class="form-control">
+                <span id="usererror" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group">
+                <label> Password:</label>
+                <input type="text" name="" id="password" class="form-control">
+                <span id="passerror" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group">
+                <label> Confirm password:</label>
+                <input type="text" name="" id="conpass" class="form-control">
+                <span id="confirmpasserror" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group">
+                <label> Email:</label>
+                <input type="text" name="" id="email" class="form-control">
+                <span id="emailerror" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group">
+                <label> Mobile Number:</label>
+                <input type="text" name="" id="mobnumber" class="form-control">
+                <span id="moberror" class="text-danger font-weight-bold"></span>
+            </div>
+            <button type="submit" value="Submit Form" class="btn btn-primary">Submit Once Done</button>
+        </form>
+
+    </div>
+    <script>
+        function validation(){
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var confrmpass = document.getElementById('conpass').value;
+        var email = document.getElementById('email').value;
+        var mobnumber = document.getElementById('mobnumber').value;
+
+        var usercheck = /^[A-Za-z. ]{3,20}$/;
+        var passwordcheck= /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,16}$/;
+        var emailcheck = /^[A-Za-z_]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z.]{2,6}$/;
+       // alert(username);
+       var mobilecheck= /^[0-9]{10}$/;
+
+       if(usercheck.test(username)){
+           document.getElementById('usererror').innerHTML= "";
+
+       } else {
+        document.getElementById('usererror').innerHTML= "** UserName Is Invalid";
+        return false;
+       }
+
+       if(passwordcheck.test(password)){
+           document.getElementById('passerror').innerHTML= "";
+
+       } else {
+        document.getElementById('passerror').innerHTML= "** Password Is Invalid";
+        return false;
+       }
+
+       if(confrmpass.match(password)){
+        document.getElementById('confirmpasserror').innerHTML= ""; 
+       } else {
+        document.getElementById('confirmpasserror').innerHTML= "** Password Is Not Matching";
+        return false;
+       }
+
+       if(emailcheck.test(email)){
+           document.getElementById('emailerror').innerHTML= "";
+
+       } else {
+        document.getElementById('emailerror').innerHTML= "** Email Is Invalid";
+        return false;
+       }
+
+       if(mobilecheck.test(mobnumber)){
+           document.getElementById('moberror').innerHTML= "";
+
+       } else {
+        document.getElementById('moberror').innerHTML= "** Mobile Number Is Invalid";
+        return false;
+       }
+
+       
+        }
+    </script>
+</body>
+
+</html>
