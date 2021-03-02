@@ -1,3 +1,5 @@
+//Answers for FrescoPlay
+
 var arguments= process.argv;
 const addthese = arguments.slice(2, arguments.length);
 let sum = 0;
@@ -90,3 +92,52 @@ creatReadstream.on('data', function(chunk){
 creatReadstream.on('end', function(){
   console.log(data)
 })
+
+//readfile
+//async
+fs.readFile('input.txt',function(err,data){
+  if(err){
+    console.log(error)
+  }
+  else {
+    console.log('Async data  is'+data.toString())
+  }
+})
+//sync
+var data= fs.readFileSync('input.txt')
+console.log('Sync data is'+ data.toString())
+console.log('its over here')
+
+//make directory
+const fs = require("fs")
+fs.mkdir('Node_folder',function(){
+  fs.writeFile('./Node_folder/sample.txt','This is Node.js a powerful backend javascript used very widely in industry for developing web applications')
+})
+
+//http module Answer
+{/* <html>
+  <body>
+    <h2>
+      welcome! what would yu like to have
+    </h2>
+    <ul>
+      <li>Coffee</li>
+      <li>Tea</li>
+      <li>Milk</li>
+    </ul>
+  </body>
+</html> */}
+var http = require('http')
+ fs=  require('fs')
+fs.readFile('./Sample.html',function(err,html){
+  if(err){
+    throw err
+  }
+  http.createServer(function(req,res){
+      res.writeHead(200,{"Content-Type":"text/html"})
+    res.write(html)
+    res.end()
+  }).listen(8000)
+})
+
+//Event Emitter
